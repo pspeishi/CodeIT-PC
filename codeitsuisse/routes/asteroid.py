@@ -11,16 +11,19 @@ logger = logging.getLogger(__name__)
 def evaluateAsteroid():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
+
     result=[]
     for test_case in data['test_cases']:
         result.append(asteroid(test_case))
     logging.info("My result :{}".format(result))
     return jsonify(result)
 
+
 # "AAABBCC" -> ['AAA','BB','CC']
 def groupedArray(our_input):
   n = len(our_input)
   grouped_array = []
+
   curr_count = 1
   prev_asteroid = our_input[0]
   for i in range(1, n):
@@ -54,7 +57,9 @@ def countScore(our_dict):
         if value >= 10:
             count += (value * 2)
 
-        elif value > 7 and value < 10:
+
+        elif value >= 7 and value < 10:
+
             count += (value * 1.5)
 
         elif value <= 6:
@@ -82,5 +87,4 @@ def asteroid(inputValue):
     output["score"] = score
     output["origin"] = origin
     return output
-
 
